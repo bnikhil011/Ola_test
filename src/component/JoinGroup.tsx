@@ -17,10 +17,6 @@ const JoinGroup = () => {
     formState: { errors },
   } = useForm<JoinGroupI>();
 
-  const parseDestination = (cordinateString: string): Cordinate => {
-    const [lat, lng] = cordinateString.split(",");
-    return { lat, lng };
-  };
   const onSubmit: SubmitHandler<JoinGroupI> = async (data) => {
     data.cordinate = await getCurrentCoordinates();
     const response = await joinGroup(data);

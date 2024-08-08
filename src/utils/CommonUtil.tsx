@@ -79,5 +79,3 @@ export const useGeolocation = () => {
 
   return getCurrentCoordinates;
 };
-
-export const tokilometer = (distanceInMeter: number) => {};

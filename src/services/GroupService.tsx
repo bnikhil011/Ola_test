@@ -2,9 +2,10 @@ import { JoinGroupI } from "../component/JoinGroup";
 import Group from "../model/Group";
 import GroupMemberResponse from "../model/GroupMemberResponse";
 import LeaderBoardRequest from "../model/LeaderBoardRequest";
+import Location from "../model/Location";
 
 // const backendUrl = "http://localhost:8092";
-const backendUrl = "https://00df-152-58-93-146.ngrok-free.app";
+const backendUrl = "https://8158-202-66-164-52.ngrok-free.app";
 
 export const createGroupService = async (group: Group) => {
   try {
@@ -20,10 +21,8 @@ export const createGroupService = async (group: Group) => {
     }
     const data = await res.json();
 
-    console.log(data);
     return data;
   } catch (err) {
-    console.log(err);
     return null;
   }
 };
@@ -42,10 +41,8 @@ export const joinGroup = async (group: JoinGroupI) => {
     }
     const data = await res.json();
 
-    console.log(data);
     return data as GroupMemberResponse;
   } catch (err) {
-    console.log(err);
     return null;
   }
 };
@@ -66,10 +63,28 @@ export const getUpdatedLeaderBordCall = async (
     }
     const data = await res.json();
 
-    console.log(data);
     return data as GroupMemberResponse;
   } catch (err) {
-    console.log(err);
     return null;
+  }
+};
+
+export const getLocationSuggestions = async (locationName: string) => {
+  try {
+    const res = await fetch(backendUrl + "/autocomplete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ input: locationName }),
+    });
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await res.json();
+
+    return data as Location[];
+  } catch (err) {
+    return [];
   }
 };
