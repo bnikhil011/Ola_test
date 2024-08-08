@@ -5,7 +5,7 @@ import LeaderBoardRequest from "../model/LeaderBoardRequest";
 import Location from "../model/Location";
 
 // const backendUrl = "http://localhost:8092";
-const backendUrl = "https://8158-202-66-164-52.ngrok-free.app";
+const backendUrl = "https://riderop-backend.onrender.com";
 
 export const createGroupService = async (group: Group) => {
   try {
